@@ -1,0 +1,20 @@
+version: "3"
+services:
+
+  app:
+    build:
+      context: "."
+      dockerfile: app.dockerfile
+    ports:
+      - "13000:3000"
+    restart: always
+  db:
+    image: postgres:9.6.2
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: abc
+      POSTGRES_PASSWORD: abc
+    volumes:
+      - "../.db:/var/lib/postgresql/db"
+    restart: always
