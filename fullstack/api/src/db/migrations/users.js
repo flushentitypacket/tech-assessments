@@ -1,10 +1,10 @@
 const TABLE_NAME = 'users'
+
 exports.up = async (knex) => {
   await knex.schema.createTable(TABLE_NAME, (table) => {
     table.increments()
-    table.string('username')
-    table.string('password')
-    table.timestamps()
+    table.string('username').notNullable()
+    table.string('password').notNullable()
   })
 }
 
