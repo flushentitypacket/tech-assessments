@@ -6,6 +6,7 @@ const port = 3000
 
 const {knex} = require('./db')
 const auth = require('./auth')
+const {channels} = require('./channels')
 
 const runApp = () => {
   app.use(express.json({
@@ -38,9 +39,7 @@ const runApp = () => {
     const token = match[1]
     if (!auth.verify(token)) return res.sendStatus(401)
 
-    res.send({
-      channels: [],
-    })
+    res.send({channels})
   })
 
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))
