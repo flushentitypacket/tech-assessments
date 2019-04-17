@@ -6,7 +6,7 @@ services:
       context: "."
       dockerfile: app.dockerfile
     ports:
-      - "13000:3000"
+      - "13000:80"
     depends_on: [db]
     restart: always
   db:

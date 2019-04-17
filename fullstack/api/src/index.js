@@ -2,7 +2,7 @@ const {oneLine} = require('common-tags')
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 80
 
 const {knex} = require('./db')
 const auth = require('./auth')

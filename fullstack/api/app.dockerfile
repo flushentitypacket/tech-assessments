@@ -6,6 +6,6 @@ WORKDIR /var/app
 RUN yarn
 
 # Expose server listen port
-EXPOSE 3000
+EXPOSE 80
 
 ENTRYPOINT ["yarn", "start"]
