@@ -4,7 +4,7 @@ exports.knex = require('knex')({
     host : 'db',
     port: 5432,
     user : 'abc',
-    password : 'abc',
+    password : 'password',
     database : 'abc',
   },
   migrations: {
