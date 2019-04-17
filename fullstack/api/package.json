@@ -8,7 +8,9 @@
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "docker:push": "docker build -f app.dockerfile -t tech-assessment/fullstack/api:latest ."
+    "docker:build": "docker build -f app.dockerfile -t tech-assessment/fullstack/api:latest .",
+    "docker:tag:latest": "docker tag tech-assessment/fullstack/api:latest 008634694210.dkr.ecr.us-east-2.amazonaws.com/tech-assessment/fullstack/api:latest",
+    "docker:push": "docker push 008634694210.dkr.ecr.us-east-2.amazonaws.com/tech-assessment/fullstack/api:latest"
   },
   "dependencies": {
     "common-tags": "^1.8.0",
