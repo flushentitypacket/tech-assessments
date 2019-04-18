@@ -7,7 +7,11 @@ To further evaluate your skill set in a more realistic scenario we have furnishe
 
 ## Overview
 
-We would like to evaluate your ability to
+This assessment will require you to read and understand backend code which you will interface with by writing frontend code.
+We hope this will give you an opportunity to demonstrate your technical skills as a fullstack engineer.
+
+We'd like to respect your time, thus the target time for this project is intended to be less than 4 hours.
+Additionally, if you have portfolio items that you feel demonstrate the same technical skills, please share that with your interviewer _instead of_ doing this assessment.
 
 Please feel free to *ask any questions you have along the way*. You will never be penalized for questions!
 
