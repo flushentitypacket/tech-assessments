@@ -19,6 +19,10 @@ variable "domain" {
   description = "The domain of your application"
 }
 
-# variable "public_key_path" {
-#   description = "Public key for ssh purposes"
-# }
+variable "seed_username" {
+  description = "username for the user that will be created upon server start"
+}
+
+variable "seed_password" {
+  description = "password for the user that will be created upon server start"
+}

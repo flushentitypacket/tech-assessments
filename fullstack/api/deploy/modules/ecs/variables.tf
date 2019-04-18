@@ -45,3 +45,11 @@ variable "database_name" {
 variable "repository_name" {
   description = "The name of the repisitory"
 }
+
+variable "seed_username" {
+  description = "username for the user that will be created upon server start"
+}
+
+variable "seed_password" {
+  description = "password for the user that will be created upon server start"
+}

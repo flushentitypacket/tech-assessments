@@ -46,8 +46,12 @@ module "ecs" {
     "${module.networking.security_groups_ids}",
     "${module.rds.db_access_sg_id}"
   ]
+  seed_username = "${var.seed_username}"
+  seed_password = "${var.seed_password}"
+
   database_endpoint   = "${module.rds.rds_address}"
   database_name       = "${var.database_name}"
   database_username   = "${var.database_username}"
   database_password   = "${var.database_password}"
+
 }

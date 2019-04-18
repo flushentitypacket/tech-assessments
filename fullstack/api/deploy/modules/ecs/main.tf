@@ -21,14 +21,22 @@ data "template_file" "app_task" {
   template = "${file("${path.module}/tasks/app.json")}"
 
   vars {
-    image           = "${aws_ecr_repository.app.repository_url}"
-    database_url    = "postgresql://${var.database_username}:${var.database_password}@${var.database_endpoint}:5432/${var.database_name}?encoding=utf8&pool=40"
+    image             = "${aws_ecr_repository.app.repository_url}"
+
+    database_endpoint      = "${var.database_endpoint}"
+    database_port     = "5432"
+    database_name     = "${var.database_name}"
+    database_username = "${var.database_username}"
+    database_password = "${var.database_password}"
+
+    seed_username     = "${var.seed_username}"
+    seed_password     = "${var.seed_password}"
   }
 }
 
 /* Simply specify the family to find the latest ACTIVE revision in that family */
 data "aws_ecs_task_definition" "app" {
-  depends_on = [ "aws_ecs_task_definition.app" ]
+  depends_on      = ["aws_ecs_task_definition.app"]
   task_definition = "${aws_ecs_task_definition.app.family}"
 }
 
@@ -51,10 +59,10 @@ resource "random_id" "target_group_sufix" {
 }
 
 resource "aws_alb_target_group" "alb_target_group" {
-  name     = "${var.environment}-alb-tg-${random_id.target_group_sufix.hex}"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
+  name        = "${var.environment}-alb-tg-${random_id.target_group_sufix.hex}"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = "${var.vpc_id}"
   target_type = "ip"
 
   lifecycle {
@@ -109,6 +117,7 @@ resource "aws_alb_listener" "app" {
   load_balancer_arn = "${aws_alb.alb_app.arn}"
   port              = "80"
   protocol          = "HTTP"
+
   # depends_on        = ["aws_alb_target_group.alb_target_group"]
 
   default_action {
@@ -122,10 +131,11 @@ resource "aws_alb_listener" "app" {
 */
 data "aws_iam_policy_document" "ecs_service_role" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
+
     principals {
-      type = "Service"
+      type        = "Service"
       identifiers = ["ecs.amazonaws.com"]
     }
   }
@@ -138,14 +148,15 @@ resource "aws_iam_role" "ecs_role" {
 
 data "aws_iam_policy_document" "ecs_service_policy" {
   statement {
-    effect = "Allow"
+    effect    = "Allow"
     resources = ["*"]
+
     actions = [
       "elasticloadbalancing:Describe*",
       "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
       "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
       "ec2:Describe*",
-      "ec2:AuthorizeSecurityGroupIngress"
+      "ec2:AuthorizeSecurityGroupIngress",
     ]
   }
 }
@@ -162,6 +173,7 @@ resource "aws_iam_role" "ecs_execution_role" {
   name               = "ecs_task_execution_role"
   assume_role_policy = "${file("${path.module}/policies/ecs-task-execution-role.json")}"
 }
+
 resource "aws_iam_role_policy" "ecs_execution_role_policy" {
   name   = "ecs_execution_role_policy"
   policy = "${file("${path.module}/policies/ecs-execution-role-policy.json")}"
@@ -203,14 +215,14 @@ resource "aws_ecs_service" "app" {
   task_definition = "${aws_ecs_task_definition.app.family}:${aws_ecs_task_definition.app.revision}"
   desired_count   = 1
   launch_type     = "FARGATE"
-  cluster =       "${aws_ecs_cluster.cluster.id}"
+  cluster         = "${aws_ecs_cluster.cluster.id}"
+
   # depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   network_configuration {
     security_groups = ["${var.security_groups_ids}", "${aws_security_group.ecs_service.id}"]
     subnets         = ["${var.subnets_ids}"]
   }
-
   load_balancer {
     target_group_arn = "${aws_alb_target_group.alb_target_group.arn}"
     container_name   = "app"
