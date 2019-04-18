@@ -1,5 +1,7 @@
 node_modules
 
+.db
+
 terraform.tfvars
 .terraform
 terraform.tfstate

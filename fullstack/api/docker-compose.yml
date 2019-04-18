@@ -5,6 +5,14 @@ services:
     build:
       context: "."
       dockerfile: app.dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: abc
+      DB_USERNAME: abc
+      DB_PASSWORD: password
+      SEED_USERNAME: seedyweedy
+      SEED_PASSWORD: password
     ports:
       - "13000:80"
     depends_on: [db]
@@ -15,7 +23,7 @@ services:
       - "15432:5432"
     environment:
       POSTGRES_USER: abc
-      POSTGRES_PASSWORD: abc
+      POSTGRES_PASSWORD: password
+      PG_DATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - "../.db:/var/lib/postgresql/db"
-    restart: always
+      - ./.db:/var/lib/postgresql/data

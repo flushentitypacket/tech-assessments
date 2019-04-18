@@ -4,6 +4,7 @@ exports.up = async (knex) => {
   await knex.schema.createTable(TABLE_NAME, (table) => {
     table.increments()
     table.string('username').notNullable()
+      .unique()
     table.string('password').notNullable()
   })
 }

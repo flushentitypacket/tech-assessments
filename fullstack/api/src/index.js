@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const port = 80
 
-const {knex} = require('./db')
+const {knex, seed} = require('./db')
 const auth = require('./auth')
 const {channels} = require('./channels')
 
@@ -42,10 +42,14 @@ const runApp = () => {
     res.send({channels})
   })
 
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}!`)
+  })
 }
 
 const start = async () => {
+  await knex.migrate.latest()
+  await seed()
   runApp()
 }
 
