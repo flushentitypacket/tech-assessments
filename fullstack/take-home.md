@@ -10,7 +10,7 @@ To further evaluate your skill set in a more realistic scenario we have furnishe
 This assessment will require you to read and understand backend code which you will interface with by writing frontend code.
 We hope this will give you an opportunity to demonstrate your technical skills as a fullstack engineer.
 
-We'd like to respect your time, thus the target time for this project is intended to be less than 4 hours.
+We'd like to respect your time, thus the intended time to complete this project is 4 hours or less.
 Additionally, if you have portfolio items that you feel demonstrate the same technical skills, please share that with your interviewer _instead of_ doing this assessment.
 
 Please feel free to *ask any questions you have along the way*. You will never be penalized for questions!
@@ -32,7 +32,7 @@ There is no need to show off fancy coding style! Code that is understandable is 
 You should have been provided the following:
 
 - URL to the backend API
-- source code to the backend API
+- [source code to the backend API](./src)
 - username-password credentials to authenticate requests to the backend API
 
 Please reach out if you are missing any of these!
