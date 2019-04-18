@@ -1,5 +1,7 @@
 # fullstack
 
+## Are you a candidate?
+
 Are you a full-stack candidate? Take a look at the [take home assignment](./take-home.md).
 
 ## Background
