@@ -35,7 +35,7 @@ const runApp = () => {
   app.get('/channels', (req, res) => {
     const authHeader = req.header('Authorization')
     const match = authHeader.match(new RegExp('^Bearer (.*)$'))
-    if (match === null) return res.sendStatus(400)
+    if (!match) return res.sendStatus(400)
     const token = match[1]
     if (!auth.verify(token)) return res.sendStatus(401)
 
