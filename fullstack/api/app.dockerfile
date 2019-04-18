@@ -1,5 +1,8 @@
 FROM node:8.9.4-alpine
 
+# For local healthcheck
+RUN apk add --no-cache curl
+
 RUN mkdir -p /var/app
 COPY . /var/app/.
 WORKDIR /var/app

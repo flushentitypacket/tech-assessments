@@ -27,7 +27,7 @@
       { "name" : "SEED_PASSWORD", "value" : "${seed_password}" }
     ],
     "healthCheck": {
-      "command": [ "CMD-SHELL", "curl -f http://localhost || exit 1" ]
+      "command": [ "CMD-SHELL", "curl http://localhost || exit 1" ]
     }
   }
 ]
