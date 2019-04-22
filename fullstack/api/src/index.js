@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const port = 80
 
+const morgan = require('morgan')
+
 const {knex, seed} = require('./db')
 const auth = require('./auth')
 const {channels} = require('./channels')
@@ -12,6 +14,7 @@ const runApp = () => {
   app.use(express.json({
     strict: true,
   }))
+  app.use(morgan())
 
   app.get('/', (req, res) => res.send('Hello World!'))
   app.post('/auth', async (req, res) => {
