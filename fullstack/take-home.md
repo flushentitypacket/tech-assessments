@@ -45,6 +45,7 @@ or by sending a [gzipped](https://www.gnu.org/software/gzip/) [git bundle of the
 
 The project must be executable by running `npm install && npm start`, which should serve the project on http://localhost:3000, and should require no additional configuration.
 If additional configuration is required, the README must contain instructions.
+You may also use `yarn` instead of `npm` if you wish.
 
 The repo must include the following:
 
@@ -68,12 +69,13 @@ You should be provided with the API source code, which you should read to figure
 - *Optional*: There are some security vulnerabilities in the backend implementation. What are they, how would you exploit them, and how would you fix them? Include your answers in your README.
   - Do not spend a huge amount of time on this. We recommend 30 minutes at most.
   - Do not perform any destructive operations! Not a huge deal, but it is just added work for us to reset the server.
-  - Depth is more important than breadth. Explain thoroughly what the attack vectors are and how to patch them. (e.g. Got the ssh keys to the DB but not the password? Explain that you can connect to the DB instance but do not have the ability read or modify data, and that the worst possible damage is server shut down.)
+  - Depth is more important than breadth. Explain thoroughly what the attack vectors are and how to patch them. (e.g. Got a DB username/password but the user only has readonly permissions? Explain that you may not perform any destructive operations, but data is fully exposed. Propose a way to mitigate data exposure and/or how to prevent leaking username/password in the first place.)
 - Highlight any note-worthy things about your project in the README that you think are especially good or 
 - You may use external libraries
 - You may choose any browser compatibility requirement (e.g. "Only works on latest version of Chrome" is acceptable)
 
-We highly recommend [create-react-app](https://github.com/facebookincubator/create-react-app) to get started on a new React app.
+We highly recommend [create-react-app](https://github.com/facebookincubator/create-react-app) to get started on a new React app, 
+but you are free to bootstrap however you wish.
 
 ## Time
 
